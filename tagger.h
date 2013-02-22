@@ -15,6 +15,11 @@ class tagger{
     		//method for renaming a folder
     		void renameFolder(std::string foldername);
 		void reallyRenameFolder(std::string foldername);
+		//method for getting status of tag_subfolders
+		bool get_tag_subfolder_status();
+	private:
+		//rename subfolders?
+		volatile bool tag_subfolder_status;
 };
 
 #endif // TAGGER_H
