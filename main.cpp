@@ -7,11 +7,11 @@ int main(void)
 {
 	std::string in;
 	std::string exit="exit";
-	tagger myTagger;
+	tagger myTagger("Adeeb");
 	std::ifstream file("test.txt");
 	file >> in;
 	std::string folder = in;
-	myTagger.reallyRenameFolder(folder);
+	myTagger.renameFolder(folder);
 	/*while(true){
 		std::cout<<"Enter stuff :\n";
 		std::cin>>in;
