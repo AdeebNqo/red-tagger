@@ -1,25 +1,8 @@
-#include <iostream>
-#include<fstream>
-#include<string>
-#include "main.h"
-#include "tagger.h"
-int main(void)
+#include<iostream>
+#include<tagger.h>
+int main(int argc, char *argv[])
 {
-	std::string in;
-	std::string exit="exit";
-	tagger myTagger("Adeeb");
-	std::ifstream file("test.txt");
-	file >> in;
-	std::string folder = in;
-	myTagger.renameFolder(folder);
-	/*while(true){
-		std::cout<<"Enter stuff :\n";
-		std::cin>>in;
-		if (in==exit){
-			break;
-		}
-		std::cout<<"\nEntered: "<<in<<std::endl;
-	}*/
+	tagger my_tagger("someTag");
+	std::cout<<"Hello World\n";
 	return 0;
 }
-
