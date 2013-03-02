@@ -5,21 +5,46 @@
 #include<sstream>
 #include<vector>
 #include<string>
+#include<sstream>
 namespace fs = boost::filesystem;
-
-tagger::tagger(std::string mytag){
-	tag = mytag;
-	std::cout<<"Tagger created!\n";
+tagger::tag givenInfo;
+tagger::tagger(std::string folder,std::string mytag){
+	givenInfo.tag_value = mytag;
+	givenInfo.foldername = folder;
+	fileSeparator = '/';
 }
 tagger::~tagger(){
-	std::cout<<"Tagger dead.\n";
-}	
-bool tagger::get_tag_subfolder_status(){
-	return tag_subfolder_status;
+
 }
+void tagger::start(){
+	renameFolder(givenInfo.foldername);
+}
+void tagger::tagSubfolder(bool state){
+	tag_subfolder_status = state;
+}	
 void tagger::renameFile(std::string filename){
-	int status = rename(filename.c_str(),Tag(filename).c_str());
-	std::cout<<"RenameFile "<<(status==0?"true":"false")<<"\n";
+	const char * oldname = filename.c_str();
+	
+	//Constructing the new name
+	int pos = filename.find_last_of(fileSeparator);
+	std::string name = filename.substr(pos,filename.size()-pos);
+	
+	std::string startofname = filename.substr(0,pos);
+	int posOfDot = name.find_last_of('.',name.size());	
+	
+	const char * newname;// = filename.c_str();	
+	//if filename has extension	
+	if (posOfDot>-1){
+		std::string dotTag("["+givenInfo.tag_value+"].");
+		name.replace(posOfDot,1,dotTag.c_str());
+		newname = (startofname+name).c_str();
+	}
+	//if filename does not have extension
+	else{
+		newname = (filename+"["+givenInfo.tag_value+"]").c_str();
+	}
+	// = (filename).c_str();
+	fs::rename(oldname,newname);
 }
 void tagger::renameFolder(std::string foldername){
 	fs::path folder(foldername);
@@ -31,25 +56,8 @@ void tagger::renameFolder(std::string foldername){
 				renameFile((*it).path().string());	
 			}
 			else{
-				if (tag_subfolder_status){
-					renameFile((*it).path().string());
-				}
 				renameFolder((*it).path().string());
 			}
 	      	}
        }
-}
-//method for changing the name of a file or folder
-std::string tagger::Tag(std::string filename){
-	std::stringstream st(filename);
-	std::string token;
-	std::vector<std::string> tokens;
-	while(!st.eof()){
-		std::getline(st,token,'/');
-		tokens.push_back(token);
-	}
-	std::vector<std::string>::iterator it = tokens.end();
-	std::string new_name = *(--it);
-	new_name += tag;
-	return new_name;
 }

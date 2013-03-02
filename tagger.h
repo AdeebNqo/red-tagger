@@ -4,22 +4,22 @@
 class tagger{
 	public:
 		//Constructor
-		tagger(std::string mytag);
+		tagger(std::string foldername,std::string mytag);
 		~tagger();
+		char fileSeparator;
 		struct tag{
 			std::string date;//Date of tag creation
 			std::string tag_value;
+			std::string foldername;
 		};
+		void start();//method for starting the tagging
+		void tagSubfolder(bool condition);
+	private:
     		//method for renaming a given file
     		void renameFile(std::string filename);
     		//method for renaming a folder
 		void renameFolder(std::string foldername);
-		//method for getting status of tag_subfolders
-		bool get_tag_subfolder_status();
-		std::string Tag(std::string filename);
-	private:
 		//rename subfolders?
-		std::string tag;
 		bool tag_subfolder_status;
 };
 
