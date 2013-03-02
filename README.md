@@ -8,7 +8,7 @@ and you use file sharing services. It allows you to customize where the tag shou
 Usage
 ==========
 
-        tagger my_tagger("/home/mhlzol004/Programming/Tagger/Test","testTag"); 
+        tagger my_tagger("/home/user/P2P","testTag"); 
         my_tagger.start();
 
 This tags files located at the given path (including subfolders) with the tag "testTag".
