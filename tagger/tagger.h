@@ -14,13 +14,13 @@ class tagger{
 		};
 		void start();//method for starting the tagging
 		void tagSubfolder(bool condition);
+        bool tag_subfolder_status;
+
 	private:
     		//method for renaming a given file
     		void renameFile(std::string filename);
     		//method for renaming a folder
 		void renameFolder(std::string foldername);
-		//rename subfolders?
-		bool tag_subfolder_status;
 };
 
 #endif // TAGGER_H

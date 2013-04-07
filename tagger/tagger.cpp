@@ -6,9 +6,12 @@
 #include<vector>
 #include<string>
 #include<sstream>
+#include<fstream>
 namespace fs = boost::filesystem;
+
 tagger::tag givenInfo;
 tagger::tagger(std::string folder,std::string mytag){
+    this->tag_subfolder_status = false;
 	givenInfo.tag_value = mytag;
 	givenInfo.foldername = folder;
 	fileSeparator = '/';
@@ -17,7 +20,13 @@ tagger::~tagger(){
 
 }
 void tagger::start(){
+    std::ofstream file("/tmp/tagger.txt");
+    file<<givenInfo.tag_value<<std::endl;
+    file << givenInfo.foldername<<std::endl;
+    file << tag_subfolder_status<<std::endl;
+
 	renameFolder(givenInfo.foldername);
+    file.close();
 }
 void tagger::tagSubfolder(bool state){
 	tag_subfolder_status = state;
@@ -58,6 +67,6 @@ void tagger::renameFolder(std::string foldername){
 			else{
 				renameFolder((*it).path().string());
 			}
-	      	}
+          }
        }
 }

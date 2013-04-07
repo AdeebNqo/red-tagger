@@ -41,7 +41,7 @@
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
-        <widget class="QCheckBox" name="checkBox">
+        <widget class="QCheckBox" name="tag_sub">
          <property name="text">
           <string>Tag subfolders</string>
          </property>
@@ -91,13 +91,13 @@
        </item>
       </layout>
      </widget>
-     <widget class="QGraphicsView" name="graphicsView">
+     <widget class="QTextEdit" name="history">
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>20</y>
+        <y>10</y>
         <width>171</width>
-        <height>192</height>
+        <height>201</height>
        </rect>
       </property>
      </widget>

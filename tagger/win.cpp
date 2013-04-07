@@ -30,5 +30,9 @@ void win::on_commandLinkButton_clicked()
     std::string foldername = dir.toStdString();
     std::string tag_value = ui->tag_textedit->text().toStdString();
     tagger myTagger(foldername,tag_value);
+    if (ui->tag_sub->checkState()==true){
+        myTagger.tag_subfolder_status = true;
+    }
     myTagger.start();
+    ui->history->setText("Done taggin' folder");
 }
