@@ -2,7 +2,7 @@
 #define WIN_H
 
 #include <QMainWindow>
-
+#include<stack>
 namespace Ui {
 class win;
 }

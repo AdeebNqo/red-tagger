@@ -3,6 +3,7 @@
 #include <QFileDialog>
 #include<string>
 #include "tagger.h"
+#include<fstream>
 QString dir;
 win::win(QWidget *parent) :
     QMainWindow(parent),
